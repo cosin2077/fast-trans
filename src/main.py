@@ -40,6 +40,9 @@ models = {}
 async def lifespan(app: FastAPI):
     # 启动时加载模型
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    print(f"CUDA available: {torch.cuda.is_available()}")
+    print(f"Current device: {torch.cuda.current_device() if torch.cuda.is_available() else 'CPU'}")
+    print(f"Device name: {torch.cuda.get_device_name(0) if torch.cuda.is_available() else 'N/A'}")
     logger.info(f"Using device: {device}")
     
     logger.info("Loading models...")
